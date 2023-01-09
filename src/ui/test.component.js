@@ -69,7 +69,10 @@ class MasterComponent extends HTMLElement {
    * @returns {string} HTML srint
    */
   render() {
-    return /* html */ '<p>Hello World</p>';
+    return /* html */ `
+      <button class="button button-pink" data-ripple-light="true">
+        Button
+      </button>`;
   }
 }
 

@@ -6,14 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
-    "build:push": "npm run build && clasp push && exit 1"
+    "build:css": "npx tailwindcss -i ./src/ui/input.css -o ./src/ui/output.css --watch",
+    "build:push": "npm run build && clasp push && exit 1",
+    "dev": "live-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/google-apps-script": "^1.0.56",
+    "tailwindcss": "^3.2.4",
     "vite": "^4.0.4",
     "vite-plugin-singlefile": "^0.13.2"
+  },
+  "dependencies": {
+    "@material-tailwind/html": "^1.2.4"
   }
 }
