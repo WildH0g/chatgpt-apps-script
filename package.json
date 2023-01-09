@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build",
+    "build:push": "npm run build && clasp push && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.56",
+    "vite": "^4.0.4",
+    "vite-plugin-singlefile": "^0.13.2"
+  }
 }

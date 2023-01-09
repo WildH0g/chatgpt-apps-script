@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataFabricator</title>
+  <script type="module" crossorigin>
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&r(s)}).observe(document,{childList:!0,subtree:!0});function o(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerpolicy&&(n.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?n.credentials="include":e.crossorigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function r(e){if(e.ep)return;e.ep=!0;const n=o(e);fetch(e.href,n)}})();const i=new WeakMap;class c extends HTMLElement{constructor(){super(),i.set(this,[])}connectedCallback(){this.attachEvent(this,"click",this.handleClick.bind(this)),this.innerHTML=this.render()}disconnectedCallback(){this.detachAllEvents()}attachEvent(t,o,r,e){return t.addEventListener(o,r,e),i.get(this).push({element:t,type:o,callback:r}),this}detachAllEvents(){i.get(this).forEach(t=>{t.element.removeEventListener(t.type,t.callback,t.options)})}handleClick(t){console.log("MasterComponent Click:",t)}render(){return"<p>Hello World</p>"}}customElements.define("test-component",c);
+
+</script>
+</head>
+<body>
+  <test-component></test-component>
+  
+</body>
+</html>
