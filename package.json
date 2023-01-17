@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
-    "build:css": "npx tailwindcss -i ./src/ui/input.css -o ./src/ui/output.css --watch",
+    "build:css:watch": "npx tailwindcss -i ./src/ui/input.css -o ./src/ui/output.css --watch",
     "build:push": "npm run build && clasp push && exit 1",
+    "build:push:watch": "npm run build && clasp push --watch",
     "dev": "live-server"
   },
   "keywords": [],

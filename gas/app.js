@@ -6,23 +6,37 @@ function onOpen() {
 }
 
 function openModal() {
-  const html = HtmlService.createHtmlOutputFromFile('ui/index');
-  SpreadsheetApp.getUi()
-    .showModelessDialog(html, 'TEST');
+  const html = HtmlService.createHtmlOutputFromFile('ui/index')
+    .setWidth(500)
+    .setHeight(700);
+  SpreadsheetApp.getUi().showModelessDialog(html, 'TEST');
 }
 
-function main() {
+function main(fields, numLines, locale = 'France') {
+  const fieldsStr = fields
+    .map(field => {
+      let fieldStr = field.name;
+      if (field.type) fieldStr += ` (${field.type})`;
+      return fieldStr;
+    })
+    .join(', ')
+    .replace(/[, ]*$/g, '');
+  console.log("🚀 ~ file: app.js:23 ~ main ~ fieldsStr", fieldsStr);
+  const prompt = `Create a two-dimensional JSON array with ${numLines} ${numLines > 1 ? 'rows' : 'row'} of fake data with the following columns and their optional formats in parentheses: ${fieldsStr}. Make sure it's not an array of objects, but an array of arrays, like in a spreadsheet. All values must be strings. The locale is ${locale}.`;
+
+  console.log("🚀 ~ file: app.js:25 ~ main ~ prompt", prompt);
+
   const res = chatgpt().prompt({
-    prompt:
-    "Create a two-dimensional JSON array with 2 rows of fake data with the following columns and their optional formats in parentheses: id (uuidv4), name (string), age (number), email, profession, company, address. The array must contain a header row. Make sure it's not an array of objects, but an array of arrays, like in a spreadsheet. The locale is Spain.",
+    prompt,
   });
+  console.log("🚀 ~ file: app.js:29 ~ res ~ res", res.getContentText())
   const ar = JSON.parse(JSON.parse(res).choices[0].text);
-  console.log("🚀 ~ file: app.ts:10 ~ main ~ ar", ar);
-  SpreadsheetApp.getActive()
-    .getActiveSheet()
-    .clear()
-    .getRange(1, 1, ar.length, ar[0].length)
-    .setValues(ar);
+  console.log('🚀 ~ file: app.ts:32 ~ main ~ ar', ar);
+  const ws = SpreadsheetApp.getActive().getActiveSheet();
+
+  const lr = ws.getLastRow();
+
+  ws.getRange(lr + 1, 1, ar.length, ar[0].length).setValues(ar);
 }
 
 function chatgpt() {
@@ -46,4 +60,14 @@ function chatgpt() {
       },
     })
     .build();
+}
+
+function getHeaders() {
+  try {
+    const ws = SpreadsheetApp.getActive().getActiveSheet();
+    const lc = ws.getLastColumn();
+    return ws.getRange(1, 1, 1, lc).getDisplayValues();
+  } catch (err) {
+    return err;
+  }
 }

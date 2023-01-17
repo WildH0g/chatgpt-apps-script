@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./components/chatgpt.component.js"></script>
     <!-- Material Icons Link -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -17,12 +18,28 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="output.css">
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
+
+    <link rel="stylesheet" href="output.css" />
+
     <title>DataFabricator</title>
   </head>
-  <body>
-    <test-component></test-component>
-    <script type="module" src="test.component.js"></script>
-    <script type="module" src="../../node_modules//@material-tailwind/html/scripts/ripple.js"></script>
+  <body class="bg-blue-gray-50 dark:bg-indigo-800 container mx-auto max-w-max">
+    <chatgpt-input></chatgpt-input>
+    <script type="module" src="app.js"></script>
+    <!-- <script
+    type="module"
+      src="../../node_modules//@material-tailwind/html/scripts/ripple.js"
+    ></script>
+    <script
+      type="module"
+      src="../../node_modules/@material-tailwind/html/scripts/dialog.js"
+    ></script> -->
+    <!-- <script type="module" src="https://unpkg.com/@material-tailwind/html@latest/scripts/input.js"></script> -->
+    <!-- <script type="module" src="../../node_modules/@material-tailwind/html/scripts/input.js" defer></script> -->
   </body>
 </html>
